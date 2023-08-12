@@ -6,7 +6,7 @@ const filter = document.querySelector('.filter')
 
 function loadStorage(){
     let itemStored = checkStorage()
-
+    // after check the local storage for each item run the function createNewTodo(and pass the item) the item is the value from the key 'items'
     itemStored.forEach(item => createNewTodo(item))
 }
 
@@ -76,6 +76,7 @@ function deletAll(){
 
 function removeStorageItem(item){
     let itemStored = checkStorage()
+    // after checl the local storage filter the item with filter(verifica i din array cu cel primit prin item si primesti inapoi un array cu toate itemele diferite de item) acum acel array filtrat trebuie trimis inapoi in local storage
     itemStored = itemStored.filter(i => i !== item)
     localStorage.setItem('items', JSON.stringify(itemStored))
     console.log(item);
@@ -83,13 +84,14 @@ function removeStorageItem(item){
 
 function addLocalStorager(item){
     let itemStored = checkStorage()
-
+    // after check the local storage push the new item in the array and set the array back. stringify the array when you set it bcs in local storage you need to send a string.
     itemStored.push(item)
     localStorage.setItem('items', JSON.stringify(itemStored))
     
 }
 
 function checkStorage(){
+    // Check the local storage if the key 'items' is empty then create an empty array else take the array from local storage and pass it in the variable itemStored.
     let itemStored
     if(localStorage.getItem('items') === null){
         itemStored = []
